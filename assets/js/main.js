@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===== NAVEGACIÓN RESPONSIVA =====
 
 function inicializarNavegacion() {
-  const hamburger = document.querySelector('.hamburger');
+  const hamburger = document.querySelector('.nav-toggle');
   const navMenu = document.querySelector('.nav-menu');
   const navLinks = document.querySelectorAll('.nav-link');
   
@@ -426,7 +426,7 @@ window.addEventListener('scroll', scrollHandler);
 document.addEventListener('keydown', function(e) {
   // Escape para cerrar menús
   if (e.key === 'Escape') {
-    const hamburger = document.querySelector('.hamburger');
+    const hamburger = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
     
     if (hamburger && navMenu) {

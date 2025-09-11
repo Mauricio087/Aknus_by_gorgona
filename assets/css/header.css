@@ -154,6 +154,8 @@
   padding: var(--spacing-sm);
   border-radius: var(--radius-sm);
   transition: var(--transition-normal);
+  position: relative;
+  z-index: 1001;
 }
 
 .nav-toggle:hover {
@@ -187,7 +189,11 @@
 /* Tablet y móvil */
 @media (max-width: 992px) {
   .nav-toggle {
-    display: flex;
+    display: flex !important;
+    position: relative;
+    z-index: 1001;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
   
   .nav-menu {
@@ -195,7 +201,11 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background: var(--color-light);
+    background: var(--gradient-navbar);
+    background-image: url('../../img/navbar.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     flex-direction: column;
     gap: 0;
     padding: var(--spacing-lg) 0;
@@ -204,7 +214,18 @@
     opacity: 0;
     visibility: hidden;
     transition: var(--transition-normal);
-    border-top: 1px solid rgba(45, 27, 105, 0.1);
+    border-top: 1px solid rgba(255, 215, 0, 0.2);
+  }
+  
+  .nav-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(139, 69, 19, 0.2);
+    z-index: 1;
   }
   
   .nav-menu.active {
@@ -216,7 +237,9 @@
   .nav-item {
     width: 100%;
     text-align: center;
-    border-bottom: 1px solid rgba(45, 27, 105, 0.05);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+    position: relative;
+    z-index: 2;
   }
   
   .nav-item:last-child {
@@ -229,6 +252,8 @@
     padding: var(--spacing-lg) var(--spacing-md);
     font-size: var(--font-size-lg);
     border-radius: 0;
+    position: relative;
+    z-index: 2;
   }
   
   .nav-link::before {
@@ -254,6 +279,10 @@
   
   .logo {
     width: 80px;
+  }
+  
+  .brand-name {
+    display: none;
   }
   
   .nav-toggle {
