@@ -330,7 +330,8 @@
 /* Mobile */
 @media (max-width: 768px) {
   .hero {
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: var(--spacing-xl) 0;
+    width: 100%;
   }
   
   .hero-content {

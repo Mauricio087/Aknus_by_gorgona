@@ -13,7 +13,7 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-  z-index: 1000;
+  z-index: 11000;
   transition: var(--transition-normal);
 }
 
@@ -191,48 +191,47 @@
   .nav-toggle {
     display: flex !important;
     position: relative;
-    z-index: 1001;
+    z-index: 10000;
     visibility: visible !important;
     opacity: 1 !important;
   }
   
   .nav-menu {
     position: fixed;
-    top: 100%;
+    top: 0;
     left: 0;
     width: 100%;
+    height: 100vh;
     background: var(--gradient-navbar);
     background-image: url('../../img/navbar.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 0;
     padding: var(--spacing-lg) 0;
     box-shadow: var(--shadow-lg);
-    transform: translateY(-100vh);
+    transform: translateX(-100%);
     opacity: 0;
     visibility: hidden;
-    transition: var(--transition-normal);
+    transition: all 0.3s ease-in-out;
     border-top: 1px solid rgba(255, 215, 0, 0.2);
-  }
-  
-  .nav-menu::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(139, 69, 19, 0.2);
-    z-index: 1;
+    z-index: 9999;
   }
   
   .nav-menu.active {
-    transform: translateY(0);
+    transform: translateX(0);
     opacity: 1;
     visibility: visible;
   }
+
+  body.menu-open {
+    overflow: hidden;
+    height: 100vh;
+  }
+}
   
   .nav-item {
     width: 100%;
@@ -269,12 +268,24 @@
 
 /* Mobile */
 @media (max-width: 768px) {
+  .header {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
   .navbar {
     padding: var(--spacing-sm) 0;
+    width: 100%;
+    overflow-x: hidden;
   }
   
   .nav-container {
+    max-width: 100%;
+    width: 100%;
     padding: 0 var(--spacing-sm);
+    margin: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
   
   .logo {
