@@ -214,9 +214,10 @@
 
 .about-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 2fr; /* Antes: 1fr 1fr -> reduce ancho de la imagen */
   gap: var(--spacing-3xl);
-  align-items: center;
+  /* align-items: center; */
+  align-items: stretch; /* Estira ambos ítems para que tengan la misma altura */
 }
 
 .about-text {
@@ -245,12 +246,16 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-xl);
+  height: 100%; /* Igualar altura al bloque de texto */
 }
 
 .about-image img {
-  width: 100%;
-  height: auto;
+  width: 400px;
+  /* height: auto; */
+  height: 400px; /* Llenar la altura del contenedor */
   display: block;
+  object-fit:contain; /* Mantener proporción y recortar si es necesario */
+  object-position: top center; /* Mostrar mejor la parte superior del retrato */
   transition: var(--transition-normal);
 }
 
@@ -278,7 +283,6 @@
   right: 0;
   bottom: 0;
   background: rgba(255, 255, 255, 0.9);
-  z-index: 1;
 }
 
 .consultations .container {
@@ -487,6 +491,15 @@
     text-align: center;
   }
   
+  /* En vista tablet/móvil, restablecer alturas automáticas */
+  .about-image {
+    height: auto;
+  }
+  .about-image img {
+    height: auto;
+    object-fit: cover; /* mantener estética sin forzar altura */
+  }
+  
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-xl);
@@ -506,6 +519,18 @@
   
   .section-header {
     margin-bottom: var(--spacing-2xl);
+  }
+  
+  /* Mostrar imagen completa en móvil */
+  .about-image {
+    margin: 0 auto; /* Centrar el contenedor de la imagen */
+  }
+  
+  .about-image img {
+    object-fit: contain; /* Cambiar de cover a contain para mostrar imagen completa */
+    object-position: center; /* Centrar la imagen */
+    width: 280px; /* Reducir tamaño para móvil */
+    max-width: 100%; /* Asegurar que no se desborde */
   }
   
   .services-grid {
