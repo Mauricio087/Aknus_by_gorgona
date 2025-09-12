@@ -111,9 +111,11 @@
   background: var(--gradient-accent);
 }
 
+/* ===== SECCIÓN DE SERVICIOS ===== */
+
 .service-icon {
-  width: 80px;
-  height: 80px;
+  width: 100px; /* Aumentado de 80px a 100px */
+  height: 100px; /* Aumentado de 80px a 100px */
   margin: 0 auto var(--spacing-lg);
   background: var(--gradient-primary);
   border-radius: 50%;
@@ -317,6 +319,7 @@
   transition: var(--transition-normal);
   position: relative;
   border: 1px solid rgba(212, 175, 55, 0.2);
+  text-align: center; /* Centrar todo el texto de la tarjeta */
 }
 
 .consultation-card:hover {
@@ -325,9 +328,10 @@
 }
 
 .consultation-icon {
-  width: 60px;
-  height: 60px;
-  margin-bottom: var(--spacing-lg);
+  width: 80px; /* Aumentado de 60px a 80px */
+  height: 80px; /* Aumentado de 60px a 80px */
+  font-size: 1.5rem;
+  margin: 0 auto var(--spacing-lg); /* Centrado con margin auto */
   background: var(--gradient-primary);
   border-radius: var(--radius-md);
   display: flex;
@@ -543,8 +547,8 @@
   }
   
   .service-icon {
-    width: 60px;
-    height: 60px;
+    width: 80px; /* Aumentado de 60px a 80px para móvil */
+    height: 80px; /* Aumentado de 60px a 80px para móvil */
     font-size: 1.5rem;
   }
   
@@ -557,8 +561,8 @@
   }
   
   .consultation-icon {
-    width: 50px;
-    height: 50px;
+    width: 85px; /* Aumentado de 70px a 85px para móvil */
+    height: 85px; /* Aumentado de 70px a 85px para móvil */
     font-size: 1.2rem;
   }
 }
