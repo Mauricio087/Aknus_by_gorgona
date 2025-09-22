@@ -256,8 +256,8 @@
   /* height: auto; */
   height: 400px; /* Llenar la altura del contenedor */
   display: block;
-  object-fit:contain; /* Mantener proporción y recortar si es necesario */
-  object-position: top center; /* Mostrar mejor la parte superior del retrato */
+  object-fit: cover; /* Mantener proporción y recortar si es necesario */
+  object-position: center; /* Centrar la imagen */
   transition: var(--transition-normal);
 }
 
@@ -528,13 +528,18 @@
   /* Mostrar imagen completa en móvil */
   .about-image {
     margin: 0 auto; /* Centrar el contenedor de la imagen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .about-image img {
-    object-fit: contain; /* Cambiar de cover a contain para mostrar imagen completa */
+    object-fit: cover; /* Mantener proporción y recortar si es necesario */
     object-position: center; /* Centrar la imagen */
     width: 280px; /* Reducir tamaño para móvil */
+    height: 280px; /* Mantener proporción cuadrada */
     max-width: 100%; /* Asegurar que no se desborde */
+    border-radius: var(--radius-lg); /* Añadir bordes redondeados */
   }
   
   .services-grid {
