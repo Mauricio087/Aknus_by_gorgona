@@ -258,6 +258,7 @@
   display: block;
   object-fit: cover; /* Mantener proporción y recortar si es necesario */
   object-position: center; /* Centrar la imagen */
+  border-radius: var(--radius-lg); /* Bordes redondeados en todas las esquinas */
   transition: var(--transition-normal);
 }
 

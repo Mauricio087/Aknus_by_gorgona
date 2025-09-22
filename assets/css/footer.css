@@ -61,7 +61,7 @@
 .footer-logo .logo {
   width: 100px;
   height: auto;
-  border-radius: var(--radius-md);
+  border-radius: 50%; /* Border radius en todas las puntas */
   transition: var(--transition-normal);
 }
 
