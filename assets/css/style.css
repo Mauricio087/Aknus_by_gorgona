@@ -550,8 +550,21 @@ section {
 }
 
 /* ===== CURSOR PERSONALIZADO ===== */
-body {
-  cursor: none;
+/* Cursor personalizado solo para dispositivos con hover */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  
+  /* Asegurar que el cursor personalizado funcione en el navbar */
+  .header, .navbar, .nav-container, .nav-menu, .nav-item, .nav-link, .nav-toggle {
+    cursor: none !important;
+  }
+  
+  /* Mantener cursor personalizado en todos los elementos interactivos */
+  a, button, .btn, input, textarea, select {
+    cursor: none !important;
+  }
 }
 
 .cursor-trail {
@@ -560,7 +573,7 @@ body {
   height: 20px;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 12000;
   mix-blend-mode: screen;
   animation: cursorTrail 0.8s ease-out forwards;
 }
@@ -602,7 +615,7 @@ body {
   height: 12px;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 10000;
+  z-index: 12001;
   background: radial-gradient(circle,
     rgba(255, 215, 0, 1) 0%,
     rgba(255, 165, 0, 0.8) 50%,
@@ -622,14 +635,34 @@ body {
     0 0 55px rgba(255, 215, 0, 0.6);
 }
 
+.main-cursor.hover-interactive {
+  transform: scale(1.3);
+  background: radial-gradient(circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 215, 0, 0.9) 30%,
+    rgba(255, 165, 0, 0.7) 70%,
+    rgba(255, 140, 0, 0.5) 100%);
+  box-shadow:
+    0 0 20px rgba(255, 215, 0, 1),
+    0 0 35px rgba(255, 215, 0, 0.8),
+    0 0 50px rgba(255, 215, 0, 0.6);
+}
+
 /* Desactivar cursor personalizado en dispositivos táctiles */
 @media (hover: none) and (pointer: coarse) {
   body {
-    cursor: auto;
+    cursor: auto !important;
   }
   
   .cursor-trail,
   .main-cursor {
-    display: none;
+    display: none !important;
+  }
+}
+
+/* Asegurar cursor visible en todos los elementos interactivos en móvil */
+@media (max-width: 768px) {
+  a, button, .nav-link, .nav-toggle, .btn {
+    cursor: pointer !important;
   }
 }

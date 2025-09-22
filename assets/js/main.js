@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
   inicializarScrollSuave();
   inicializarAnimacionesScroll();
   inicializarParticulas();
+  inicializarCursorPersonalizado();
   
   console.log('🔮 Aknuz by Gorgona - Sitio web inicializado correctamente');
 });
@@ -498,13 +499,95 @@ function inicializarModoOscuro() {
 // Inicializar modo oscuro
 inicializarModoOscuro();
 
+// ===== CURSOR PERSONALIZADO PARA PC =====
+
+function inicializarCursorPersonalizado() {
+  // Solo en dispositivos con hover (PC)
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let mainCursor = document.createElement('div');
+    mainCursor.className = 'main-cursor';
+    document.body.appendChild(mainCursor);
+    
+    let isClicking = false;
+    
+    // Seguir el movimiento del mouse
+    document.addEventListener('mousemove', function(e) {
+      mainCursor.style.left = e.clientX - 6 + 'px';
+      mainCursor.style.top = e.clientY - 6 + 'px';
+      
+      // Crear efecto de rastro
+      createCursorTrail(e.clientX, e.clientY);
+      
+      // Detectar elementos interactivos
+      const elementoActual = document.elementFromPoint(e.clientX, e.clientY);
+      const esInteractivo = elementoActual && (
+        elementoActual.tagName === 'A' ||
+        elementoActual.tagName === 'BUTTON' ||
+        elementoActual.classList.contains('nav-link') ||
+        elementoActual.classList.contains('nav-toggle') ||
+        elementoActual.classList.contains('btn') ||
+        elementoActual.type === 'submit' ||
+        elementoActual.onclick !== null ||
+        window.getComputedStyle(elementoActual).cursor === 'pointer'
+      );
+      
+      if (esInteractivo) {
+        mainCursor.classList.add('hover-interactive');
+      } else {
+        mainCursor.classList.remove('hover-interactive');
+      }
+    });
+    
+    // Efecto de click
+    document.addEventListener('mousedown', function() {
+      isClicking = true;
+      mainCursor.classList.add('clicking');
+    });
+    
+    document.addEventListener('mouseup', function() {
+      isClicking = false;
+      mainCursor.classList.remove('clicking');
+    });
+    
+    // Ocultar cursor cuando sale de la ventana
+    document.addEventListener('mouseleave', function() {
+      mainCursor.style.opacity = '0';
+    });
+    
+    document.addEventListener('mouseenter', function() {
+      mainCursor.style.opacity = '1';
+    });
+    
+    console.log('🖱️ Cursor personalizado inicializado correctamente');
+  }
+}
+
+function createCursorTrail(x, y) {
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let trail = document.createElement('div');
+    trail.className = 'cursor-trail';
+    trail.style.left = x - 10 + 'px';
+    trail.style.top = y - 10 + 'px';
+    document.body.appendChild(trail);
+    
+    // Remover el rastro después de la animación
+    setTimeout(() => {
+      if (trail.parentNode) {
+        trail.parentNode.removeChild(trail);
+      }
+    }, 800);
+  }
+}
+
 // ===== EXPORTAR FUNCIONES PARA USO GLOBAL =====
 
 window.AknuzApp = {
   serviciosData,
   tiposConsulta,
   mostrarNotificacion,
-  trackearEvento
+  trackearEvento,
+  inicializarCursorPersonalizado
 };
 
 console.log('✨ Aknuz by Gorgona - JavaScript cargado completamente');
+console.log('🖱️ Cursor personalizado listo para inicializar en PC');
